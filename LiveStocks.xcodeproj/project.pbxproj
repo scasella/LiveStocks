@@ -11,19 +11,28 @@
 		885C748C1BC9648F009E670E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C748B1BC9648F009E670E /* ViewController.swift */; };
 		885C748F1BC9648F009E670E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885C748D1BC9648F009E670E /* Main.storyboard */; };
 		885C74911BC9648F009E670E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885C74901BC9648F009E670E /* Assets.xcassets */; };
-		885C74991BC9727C009E670E /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C74981BC9727C009E670E /* MovieCell.swift */; };
+		885C74991BC9727C009E670E /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C74981BC9727C009E670E /* StockCell.swift */; };
 		885C749B1BC97BBA009E670E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C749A1BC97BBA009E670E /* Movie.swift */; };
+		8860DE451BDD9A1400D44A97 /* redTri3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8860DE441BDD9A1400D44A97 /* redTri3.png */; };
+		88A48F661BDD5C5E00375EC4 /* Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F651BDD5C5E00375EC4 /* Card2.png */; };
+		88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F681BDD602900375EC4 /* greenTri2.png */; };
+		88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F6B1BDD78CB00375EC4 /* Card3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		885C74861BC9648F009E670E /* testTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		885C74861BC9648F009E670E /* LiveStocks.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveStocks.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		885C74891BC9648F009E670E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		885C748B1BC9648F009E670E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		885C748E1BC9648F009E670E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		885C74901BC9648F009E670E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		885C74921BC9648F009E670E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		885C74981BC9727C009E670E /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		885C74981BC9727C009E670E /* StockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		885C749A1BC97BBA009E670E /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		8860DE441BDD9A1400D44A97 /* redTri3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redTri3.png; sourceTree = "<group>"; };
+		8884CE8D1BD9E14800461322 /* summarytvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = summarytvOS.entitlements; sourceTree = SOURCE_ROOT; };
+		88A48F651BDD5C5E00375EC4 /* Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card2.png; sourceTree = "<group>"; };
+		88A48F681BDD602900375EC4 /* greenTri2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTri2.png; sourceTree = "<group>"; };
+		88A48F6B1BDD78CB00375EC4 /* Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +49,7 @@
 		885C747D1BC9648F009E670E = {
 			isa = PBXGroup;
 			children = (
-				885C74881BC9648F009E670E /* testTVOS */,
+				885C74881BC9648F009E670E /* liveStocks */,
 				885C74871BC9648F009E670E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,31 +57,37 @@
 		885C74871BC9648F009E670E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				885C74861BC9648F009E670E /* testTVOS.app */,
+				885C74861BC9648F009E670E /* LiveStocks.temp_caseinsensitive_rename.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		885C74881BC9648F009E670E /* testTVOS */ = {
+		885C74881BC9648F009E670E /* liveStocks */ = {
 			isa = PBXGroup;
 			children = (
+				8884CE8D1BD9E14800461322 /* summarytvOS.entitlements */,
 				885C74891BC9648F009E670E /* AppDelegate.swift */,
 				885C748B1BC9648F009E670E /* ViewController.swift */,
+				88A48F6B1BDD78CB00375EC4 /* Card3.png */,
+				88A48F651BDD5C5E00375EC4 /* Card2.png */,
+				8860DE441BDD9A1400D44A97 /* redTri3.png */,
+				88A48F681BDD602900375EC4 /* greenTri2.png */,
 				885C749A1BC97BBA009E670E /* Movie.swift */,
 				885C748D1BC9648F009E670E /* Main.storyboard */,
-				885C74981BC9727C009E670E /* MovieCell.swift */,
+				885C74981BC9727C009E670E /* StockCell.swift */,
 				885C74901BC9648F009E670E /* Assets.xcassets */,
 				885C74921BC9648F009E670E /* Info.plist */,
 			);
+			name = liveStocks;
 			path = testTVOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		885C74851BC9648F009E670E /* testTVOS */ = {
+		885C74851BC9648F009E670E /* liveStocks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "testTVOS" */;
+			buildConfigurationList = 885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "liveStocks" */;
 			buildPhases = (
 				885C74821BC9648F009E670E /* Sources */,
 				885C74831BC9648F009E670E /* Frameworks */,
@@ -82,9 +97,9 @@
 			);
 			dependencies = (
 			);
-			name = testTVOS;
+			name = liveStocks;
 			productName = testTVOS;
-			productReference = 885C74861BC9648F009E670E /* testTVOS.app */;
+			productReference = 885C74861BC9648F009E670E /* LiveStocks.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,10 +114,19 @@
 				TargetAttributes = {
 					885C74851BC9648F009E670E = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 9ZJC9RDWN7;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
-			buildConfigurationList = 885C74811BC9648F009E670E /* Build configuration list for PBXProject "testTVOS" */;
+			buildConfigurationList = 885C74811BC9648F009E670E /* Build configuration list for PBXProject "LiveStocks" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -115,7 +139,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				885C74851BC9648F009E670E /* testTVOS */,
+				885C74851BC9648F009E670E /* liveStocks */,
 			);
 		};
 /* End PBXProject section */
@@ -126,6 +150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				885C74911BC9648F009E670E /* Assets.xcassets in Resources */,
+				8860DE451BDD9A1400D44A97 /* redTri3.png in Resources */,
+				88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */,
+				88A48F661BDD5C5E00375EC4 /* Card2.png in Resources */,
+				88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */,
 				885C748F1BC9648F009E670E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +168,7 @@
 				885C748C1BC9648F009E670E /* ViewController.swift in Sources */,
 				885C748A1BC9648F009E670E /* AppDelegate.swift in Sources */,
 				885C749B1BC97BBA009E670E /* Movie.swift in Sources */,
-				885C74991BC9727C009E670E /* MovieCell.swift in Sources */,
+				885C74991BC9727C009E670E /* StockCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,10 +272,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = summarytvOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testTVOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.testTVOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.summarytvOS;
+				PRODUCT_NAME = LiveStocks.temp_caseinsensitive_rename;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -256,17 +288,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = summarytvOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testTVOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.testTVOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.summarytvOS;
+				PRODUCT_NAME = LiveStocks.temp_caseinsensitive_rename;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		885C74811BC9648F009E670E /* Build configuration list for PBXProject "testTVOS" */ = {
+		885C74811BC9648F009E670E /* Build configuration list for PBXProject "LiveStocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				885C74931BC9648F009E670E /* Debug */,
@@ -275,13 +311,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "testTVOS" */ = {
+		885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "liveStocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				885C74961BC9648F009E670E /* Debug */,
 				885C74971BC9648F009E670E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
