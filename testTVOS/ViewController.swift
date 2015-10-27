@@ -22,6 +22,8 @@ var percentChangeArray = [String]()
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var mappedURL = NSURL(string: "")
+    
    var shouldUpdate = true
     
     @IBOutlet weak var stocksButton: UIButton!
@@ -39,12 +41,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        //downloadData()
+        assignMappedURL()
+  
+        downloadData()
         // Do any additional setup after loading the view, typically from a nib.
         
-         _ = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "update", userInfo: nil, repeats: true)
+         let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "update", userInfo: nil, repeats: true)
         
       stocksButton.preferredFocusedView
+        
     }
     
     
@@ -59,45 +64,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func downloadData() {
         
-    shouldUpdate = false
-        
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
       //  let qualityOfServiceClass = QOS_CLASS_BACKGROUND
         //let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
         //dispatch_async(backgroundQueue, {
-            
-        let percentScreen = "%2C%20"
-       
-        var urlText = ""
-        
-        var counter = 0
-        
-        for x in tickerArray {
-            
-            if counter == 0 {
-                urlText =  "\(x)"
-                counter++
-                
-            } else {
-                
-            urlText = "\(urlText)" + "\(percentScreen)" + "\(x)"
-                
-            }
-        }
-                        
-            //Format URL for API, call API, return summary to summaryArray
-            let encodedURL = urlText
-            /*.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!*/
-                        
-            let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + encodedURL + "&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
-                    
-                    let mappedURL = NSURL(string: mappedURLString)
-        
-                    let data = NSData(contentsOfURL: mappedURL!)
+          self.shouldUpdate = false
+    
+                    let data = NSData(contentsOfURL: self.mappedURL!)
                         
                         do { let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers) as! NSDictionary
                             
                             if let items = jsonData["results"] as? NSArray {
+                                
+                                tickerTable.removeAll()
+                                priceArray.removeAll()
+                                changeArray.removeAll()
+                                percentChangeArray.removeAll()
                                 
                                 for item in items {
                                     
@@ -108,7 +90,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     
                                     
                                     let price = item["price"]!
-                                    
+                                
                                     priceArray.append(price as! Float)
                                     //NSUserDefaults.standardUserDefaults().setObject(priceArray, forKey: "priceArray")
                                     
@@ -117,32 +99,43 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     
                                     changeArray.append(Float(priceChange as! String)!)
                                     //NSUserDefaults.standardUserDefaults().setObject(changeArray, forKey: "changeArray")
-                                    
-                                    
+
                                     let percentChange = item["percent_change"]!
-                                    
+                                 
                                     percentChangeArray.append(percentChange as! String)
                                     //NSUserDefaults.standardUserDefaults().setObject(percentChangeArray, forKey: "percentChangeArray")
-                                
                                     
+                                   
+                                    
+                                 
                                 }
-                              dispatch_async(dispatch_get_main_queue()) {
-                             self.collectionView.reloadData()
-                                print("updated")
-                                 self.shouldUpdate = true
-                                }
-                            }
+                                
+                        dispatch_async(dispatch_get_main_queue()) {
                             
+                            
+                                self.collectionView.reloadData()
+                                self.collectionView.reloadInputViews()
+                                   self.shouldUpdate = true
+                                
+                                }
+                                
+                            }
+                
+                       
+                         
                         } catch {
                             
                             print("not a dictionary")
                             
                         }
-      
+
                // })
-        
+    
         //})
         }
+        
+        
+      
     }
 
     
@@ -245,6 +238,37 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }*/
     }
     
+    
+    
+    func assignMappedURL() {
+        
+        let percentScreen = "%2C%20"
+        
+        var urlText = ""
+        
+        var counter = 0
+        
+        for x in tickerArray {
+            
+            if counter == 0 {
+                urlText =  "\(x)"
+                counter++
+                
+            } else {
+                
+                urlText = "\(urlText)" + "\(percentScreen)" + "\(x)"
+                
+            }
+        }
+        
+        //Format URL for API, call API, return summary to summaryArray
+        let encodedURL = urlText
+        /*.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!*/
+        
+        let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + encodedURL + "&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
+        
+        mappedURL = NSURL(string: mappedURLString)
+    }
     
 }
 

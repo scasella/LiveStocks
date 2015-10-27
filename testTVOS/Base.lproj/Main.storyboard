@@ -21,17 +21,25 @@
                                 <animations/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0RC-eQ-pnr">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="176"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="227"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="29T-Fu-lVc">
-                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="176"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="227"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kv5-6S-Vh7">
+                                            <rect key="frame" x="161" y="83" width="1598" height="86"/>
+                                            <animations/>
+                                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                            <state key="normal" title="Stocks"/>
+                                        </button>
+                                    </subviews>
                                     <animations/>
                                 </view>
                                 <animations/>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sGz-o0-k5l">
-                                <rect key="frame" x="0.0" y="179" width="1920" height="901"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sGz-o0-k5l">
+                                <rect key="frame" x="86" y="229" width="1749" height="851"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="50" minimumInteritemSpacing="10" id="q87-5g-gHS">
@@ -49,7 +57,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Card2.png" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FIk-Pm-mMl">
-                                                    <rect key="frame" x="29" y="45" width="421" height="162"/>
+                                                    <rect key="frame" x="12" y="43" width="457" height="166"/>
                                                     <animations/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AAPL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9q-He-xhM">
@@ -81,7 +89,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="greenTri2.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Sy-zE-omM">
-                                                    <rect key="frame" x="262" y="80" width="37" height="28"/>
+                                                    <rect key="frame" x="266" y="80" width="37" height="28"/>
                                                     <animations/>
                                                 </imageView>
                                             </subviews>
@@ -99,21 +107,9 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kv5-6S-Vh7">
-                                <rect key="frame" x="110" y="45" width="1694" height="86"/>
-                                <animations/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Stocks"/>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.17254901960784313" green="0.1764705882352941" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="sGz-o0-k5l" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5U8-fA-Eht"/>
-                            <constraint firstAttribute="trailing" secondItem="sGz-o0-k5l" secondAttribute="trailing" id="HtR-BB-zdx"/>
-                            <constraint firstItem="sGz-o0-k5l" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="179" id="TxH-Nk-Avn"/>
-                            <constraint firstItem="sGz-o0-k5l" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="lFZ-8F-g5y"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="sGz-o0-k5l" id="B6m-G1-rDn"/>
