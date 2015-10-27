@@ -49,7 +49,7 @@
 		885C747D1BC9648F009E670E = {
 			isa = PBXGroup;
 			children = (
-				885C74881BC9648F009E670E /* liveStocks */,
+				885C74881BC9648F009E670E /* LiveStocks */,
 				885C74871BC9648F009E670E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,7 +62,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		885C74881BC9648F009E670E /* liveStocks */ = {
+		885C74881BC9648F009E670E /* LiveStocks */ = {
 			isa = PBXGroup;
 			children = (
 				8884CE8D1BD9E14800461322 /* summarytvOS.entitlements */,
@@ -78,16 +78,16 @@
 				885C74901BC9648F009E670E /* Assets.xcassets */,
 				885C74921BC9648F009E670E /* Info.plist */,
 			);
-			name = liveStocks;
+			name = LiveStocks;
 			path = testTVOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		885C74851BC9648F009E670E /* liveStocks */ = {
+		885C74851BC9648F009E670E /* LiveStocks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "liveStocks" */;
+			buildConfigurationList = 885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "LiveStocks" */;
 			buildPhases = (
 				885C74821BC9648F009E670E /* Sources */,
 				885C74831BC9648F009E670E /* Frameworks */,
@@ -97,7 +97,7 @@
 			);
 			dependencies = (
 			);
-			name = liveStocks;
+			name = LiveStocks;
 			productName = testTVOS;
 			productReference = 885C74861BC9648F009E670E /* LiveStocks.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
@@ -139,7 +139,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				885C74851BC9648F009E670E /* liveStocks */,
+				885C74851BC9648F009E670E /* LiveStocks */,
 			);
 		};
 /* End PBXProject section */
@@ -272,12 +272,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = summarytvOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = summarytvOs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testTVOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.summarytvOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.LiveStocks;
 				PRODUCT_NAME = LiveStocks.temp_caseinsensitive_rename;
 				PROVISIONING_PROFILE = "";
 			};
@@ -288,12 +288,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = summarytvOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = summarytvOs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testTVOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.summarytvOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.scasella.LiveStocks;
 				PRODUCT_NAME = LiveStocks.temp_caseinsensitive_rename;
 				PROVISIONING_PROFILE = "";
 			};
@@ -311,7 +311,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "liveStocks" */ = {
+		885C74951BC9648F009E670E /* Build configuration list for PBXNativeTarget "LiveStocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				885C74961BC9648F009E670E /* Debug */,

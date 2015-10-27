@@ -11,6 +11,8 @@ import UIKit
 
 var tickerArray = ["AAPL","GOOGL","KO","YHOO","BABA","AMZN","PEP","FXI","UUP","GLD","SLV","SPY"]
 
+var tickerTable = [String]()
+
 var priceArray = [Float]()
 
 var changeArray = [Float]()
@@ -20,7 +22,7 @@ var percentChangeArray = [String]()
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-   
+   var shouldUpdate = true
     
     @IBOutlet weak var stocksButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -37,16 +39,33 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        downloadData()
+        //downloadData()
         // Do any additional setup after loading the view, typically from a nib.
+        
+         _ = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "update", userInfo: nil, repeats: true)
+        
       stocksButton.preferredFocusedView
     }
     
     
+    
+    func update() {
+        if shouldUpdate == true {
+            downloadData()
+        }
+    }
+    
+    
+    
     func downloadData() {
         
-       var wasSuccessful = false
+    shouldUpdate = false
         
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+      //  let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+        //let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        //dispatch_async(backgroundQueue, {
+            
         let percentScreen = "%2C%20"
        
         var urlText = ""
@@ -84,8 +103,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     
                                     let ticker = item["symbol"]!
                                     
-                                    /*tickerArray.append(ticker as! String)
-                                    NSUserDefaults.standardUserDefaults().setObject(tickerArray, forKey: "tickerArray")*/
+                                    tickerTable.append(ticker as! String)
+                                    //NSUserDefaults.standardUserDefaults().setObject(tickerTable, forKey: "tickerTable")
                                     
                                     
                                     let price = item["price"]!
@@ -107,8 +126,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                 
                                     
                                 }
-                                
+                              dispatch_async(dispatch_get_main_queue()) {
                              self.collectionView.reloadData()
+                                print("updated")
+                                 self.shouldUpdate = true
+                                }
                             }
                             
                         } catch {
@@ -116,8 +138,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             print("not a dictionary")
                             
                         }
-        
+      
                // })
+        
+        //})
+        }
     }
 
     
@@ -133,7 +158,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCell", forIndexPath: indexPath) as? StockCell {
            
-            cell.ticker.text = tickerArray[indexPath.row]
+            cell.ticker.text = tickerTable[indexPath.row]
             cell.price.text = "\(priceArray[indexPath.row])"
             cell.priceChange.text = "\(changeArray [indexPath.row])"
             cell.percentageChange.text = percentChangeArray[indexPath.row]
@@ -194,7 +219,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tickerArray.count
+        return tickerTable.count
     }
     
     
