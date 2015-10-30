@@ -17,6 +17,8 @@
 		88A48F661BDD5C5E00375EC4 /* Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F651BDD5C5E00375EC4 /* Card2.png */; };
 		88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F681BDD602900375EC4 /* greenTri2.png */; };
 		88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F6B1BDD78CB00375EC4 /* Card3.png */; };
+		88EA27231BE3090D006AFC08 /* StockFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA27221BE3090D006AFC08 /* StockFeedCell.swift */; };
+		88EA27251BE30A47006AFC08 /* StockDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA27241BE30A47006AFC08 /* StockDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		88A48F651BDD5C5E00375EC4 /* Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card2.png; sourceTree = "<group>"; };
 		88A48F681BDD602900375EC4 /* greenTri2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTri2.png; sourceTree = "<group>"; };
 		88A48F6B1BDD78CB00375EC4 /* Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card3.png; sourceTree = "<group>"; };
+		88EA27221BE3090D006AFC08 /* StockFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockFeedCell.swift; sourceTree = "<group>"; };
+		88EA27241BE30A47006AFC08 /* StockDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 				88A48F681BDD602900375EC4 /* greenTri2.png */,
 				885C749A1BC97BBA009E670E /* Movie.swift */,
 				885C748D1BC9648F009E670E /* Main.storyboard */,
+				88EA27241BE30A47006AFC08 /* StockDetailController.swift */,
+				88EA27221BE3090D006AFC08 /* StockFeedCell.swift */,
 				885C74981BC9727C009E670E /* StockCell.swift */,
 				885C74901BC9648F009E670E /* Assets.xcassets */,
 				885C74921BC9648F009E670E /* Info.plist */,
@@ -166,6 +172,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				885C748C1BC9648F009E670E /* ViewController.swift in Sources */,
+				88EA27251BE30A47006AFC08 /* StockDetailController.swift in Sources */,
+				88EA27231BE3090D006AFC08 /* StockFeedCell.swift in Sources */,
 				885C748A1BC9648F009E670E /* AppDelegate.swift in Sources */,
 				885C749B1BC97BBA009E670E /* Movie.swift in Sources */,
 				885C74991BC9727C009E670E /* StockCell.swift in Sources */,
