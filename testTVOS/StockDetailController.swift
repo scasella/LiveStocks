@@ -15,13 +15,25 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     var feedTimestampArray = [String]()
     var feedContentArray = [String]()
     
-    var ticker = "aapl"
+    var ticker = segueTicker
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var chartImg: UIImageView!
+    
+    
+
+    @IBAction func timeButtonChange(sender: UIButton) {
+          displayChart(Int(sender.restorationIdentifier!)!, isLineType: false)
+    }
+ 
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        displayChart(0, isLineType: false)
         
         downloadData()
         
@@ -127,7 +139,109 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
         
     }
+    
+    
+    
+    func displayChart(time: Int, isLineType: Bool) {
+        
+    if isLineType == true {
+        
+        if time == 0 {
+            
+            let time = "1d"
+            
+            let type = "l"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+        } else if time == 1 {
+            
+            let time = "1y"
+            
+            let type = "l"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+        } else if time == 2 {
+            
+            let time = "5y"
+            
+            let type = "l"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+        } else {
+            
+            let time = "my"
+            
+            let type = "l"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+        }
+            
+        } else {
+        
+       
+        if time == 0 {
+            
+            let time = "1d"
+            
+            let type = "c"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+        } else if time == 1 {
+            
+            let time = "1y"
+            
+            let type = "c"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+        } else if time == 2 {
+            
+            let time = "5y"
+            
+            let type = "c"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+        } else {
+            
+            let time = "my"
+            
+            let type = "c"
+            
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            
+            self.chartImg.image = UIImage(data: data!)
+            
+            
+    }
+        }
+            }
 
-
-
+    
 }

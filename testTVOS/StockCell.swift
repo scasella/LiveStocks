@@ -10,7 +10,6 @@ import UIKit
 
 class StockCell: UICollectionViewCell {
     
-    
     @IBOutlet weak var ticker: UILabel!
     
     @IBOutlet weak var price: UILabel!
@@ -21,5 +20,6 @@ class StockCell: UICollectionViewCell {
 
     @IBOutlet weak var arrowImg: UIImageView!
     
+    @IBOutlet weak var backgroundImg: UIImageView!
 
 }

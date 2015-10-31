@@ -8,6 +8,8 @@
 
 import UIKit
 
+var segueTicker = ""
+
 
 var tickerArray = ["AAPL","GOOGL","KO","YHOO","BABA","AMZN","PEP","FXI","UUP","GLD","SLV","SPY"]
 
@@ -198,8 +200,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     func tapped(gesture: UITapGestureRecognizer) {
-        if let _ = gesture.view as? StockCell {
-            print("load next view controller")
+        if let cell = gesture.view as? StockCell {
+           segueTicker = cell.ticker.text!
+           performSegueWithIdentifier("detailSegue", sender: self)
         }
     }
 
@@ -225,15 +228,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         
-       /* if let prev = context.previouslyFocusedView as? MovieCell {
+      /* if let prev = context.previouslyFocusedView as? StockCell {
             UIView.animateWithDuration(0.1, animations: { () -> Void in
-                prev.movieImg.frame.size = self.defaultSize
+                prev.view.frame.size = self.defaultSize
             })
         }
         
-          if let next = context.nextFocusedView as? MovieCell {
+          if let next = context.nextFocusedView as? StockCell {
             UIView.animateWithDuration(0.1, animations: { () -> Void in
-                next.movieImg.frame.size = self.focusSize
+                next.view.frame.size = self.focusSize
             })
         }*/
     }

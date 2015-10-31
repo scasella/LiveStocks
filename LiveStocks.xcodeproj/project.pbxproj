@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88010AF81BE45B0000D549B8 /* chartBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 88010AF71BE45B0000D549B8 /* chartBG.png */; };
 		885C748A1BC9648F009E670E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C74891BC9648F009E670E /* AppDelegate.swift */; };
 		885C748C1BC9648F009E670E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C748B1BC9648F009E670E /* ViewController.swift */; };
 		885C748F1BC9648F009E670E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885C748D1BC9648F009E670E /* Main.storyboard */; };
@@ -17,11 +18,14 @@
 		88A48F661BDD5C5E00375EC4 /* Card2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F651BDD5C5E00375EC4 /* Card2.png */; };
 		88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F681BDD602900375EC4 /* greenTri2.png */; };
 		88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F6B1BDD78CB00375EC4 /* Card3.png */; };
+		88C89A6B1BE4476B00253D82 /* CardBG4.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C89A6A1BE4476B00253D82 /* CardBG4.png */; };
+		88C89A6D1BE44B6E00253D82 /* TableBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C89A6C1BE44B6E00253D82 /* TableBG.png */; };
 		88EA27231BE3090D006AFC08 /* StockFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA27221BE3090D006AFC08 /* StockFeedCell.swift */; };
 		88EA27251BE30A47006AFC08 /* StockDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA27241BE30A47006AFC08 /* StockDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		88010AF71BE45B0000D549B8 /* chartBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chartBG.png; sourceTree = "<group>"; };
 		885C74861BC9648F009E670E /* LiveStocks.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveStocks.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		885C74891BC9648F009E670E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		885C748B1BC9648F009E670E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,10 +35,11 @@
 		885C74981BC9727C009E670E /* StockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		885C749A1BC97BBA009E670E /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		8860DE441BDD9A1400D44A97 /* redTri3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redTri3.png; sourceTree = "<group>"; };
-		8884CE8D1BD9E14800461322 /* summarytvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = summarytvOS.entitlements; sourceTree = SOURCE_ROOT; };
 		88A48F651BDD5C5E00375EC4 /* Card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card2.png; sourceTree = "<group>"; };
 		88A48F681BDD602900375EC4 /* greenTri2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTri2.png; sourceTree = "<group>"; };
 		88A48F6B1BDD78CB00375EC4 /* Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card3.png; sourceTree = "<group>"; };
+		88C89A6A1BE4476B00253D82 /* CardBG4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardBG4.png; sourceTree = "<group>"; };
+		88C89A6C1BE44B6E00253D82 /* TableBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableBG.png; sourceTree = "<group>"; };
 		88EA27221BE3090D006AFC08 /* StockFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockFeedCell.swift; sourceTree = "<group>"; };
 		88EA27241BE30A47006AFC08 /* StockDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,10 +74,12 @@
 		885C74881BC9648F009E670E /* LiveStocks */ = {
 			isa = PBXGroup;
 			children = (
-				8884CE8D1BD9E14800461322 /* summarytvOS.entitlements */,
 				885C74891BC9648F009E670E /* AppDelegate.swift */,
 				885C748B1BC9648F009E670E /* ViewController.swift */,
 				88A48F6B1BDD78CB00375EC4 /* Card3.png */,
+				88C89A6C1BE44B6E00253D82 /* TableBG.png */,
+				88C89A6A1BE4476B00253D82 /* CardBG4.png */,
+				88010AF71BE45B0000D549B8 /* chartBG.png */,
 				88A48F651BDD5C5E00375EC4 /* Card2.png */,
 				8860DE441BDD9A1400D44A97 /* redTri3.png */,
 				88A48F681BDD602900375EC4 /* greenTri2.png */,
@@ -126,7 +133,7 @@
 								enabled = 0;
 							};
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -157,10 +164,13 @@
 			files = (
 				885C74911BC9648F009E670E /* Assets.xcassets in Resources */,
 				8860DE451BDD9A1400D44A97 /* redTri3.png in Resources */,
+				88010AF81BE45B0000D549B8 /* chartBG.png in Resources */,
 				88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */,
 				88A48F661BDD5C5E00375EC4 /* Card2.png in Resources */,
+				88C89A6B1BE4476B00253D82 /* CardBG4.png in Resources */,
 				88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */,
 				885C748F1BC9648F009E670E /* Main.storyboard in Resources */,
+				88C89A6D1BE44B6E00253D82 /* TableBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +290,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = summarytvOs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testTVOS/Info.plist;
@@ -296,7 +305,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = summarytvOs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testTVOS/Info.plist;
