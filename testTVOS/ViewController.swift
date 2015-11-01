@@ -11,7 +11,7 @@ import UIKit
 var segueTicker = ""
 
 
-var tickerArray = ["AAPL","GOOGL","KO","YHOO","BABA","AMZN","PEP","FXI","UUP","GLD","SLV","SPY"]
+var tickerArray = ["AAPL","GOOGL","KO"]
 
 var tickerTable = [String]()
 
@@ -26,34 +26,50 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var mappedURL = NSURL(string: "")
     
-   var shouldUpdate = true
+    var shouldUpdate = true
+    
+    var timer = NSTimer()
     
     @IBOutlet weak var stocksButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     let defaultSize = CGSizeMake(421, 162)
     let focusSize = CGSizeMake(471, 212)
     var movies = [Movie]()
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
+    }
+    
+    
+
+    override func viewWillAppear(animated: Bool) {
+        
+        if NSUserDefaults.standardUserDefaults().objectForKey("tickerArray") != nil {
+            tickerArray = NSUserDefaults.standardUserDefaults().objectForKey("tickerArray") as! [String]
+        }
+        
+        collectionView.reloadData()
+        
+        loadingIndicator.startAnimating()
+        
         assignMappedURL()
   
         downloadData()
         // Do any additional setup after loading the view, typically from a nib.
         
-         let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "update", userInfo: nil, repeats: true)
+         timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "update", userInfo: nil, repeats: true)
         
       stocksButton.preferredFocusedView
         
     }
-    
     
     
     func update() {
@@ -66,65 +82,58 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func downloadData() {
         
-   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    shouldUpdate = false
+        
+    tickerTable.removeAll()
+    priceArray.removeAll()
+    changeArray.removeAll()
+    percentChangeArray.removeAll()
+        
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
       //  let qualityOfServiceClass = QOS_CLASS_BACKGROUND
         //let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
         //dispatch_async(backgroundQueue, {
-          self.shouldUpdate = false
     
-                    let data = NSData(contentsOfURL: self.mappedURL!)
-                        
-                        do { let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers) as! NSDictionary
+    
+                        if let data = NSData(contentsOfURL: self.mappedURL!) {
+    
+                        do { let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.MutableContainers) as? NSDictionary
                             
-                            if let items = jsonData["results"] as? NSArray {
-                                
-                                tickerTable.removeAll()
-                                priceArray.removeAll()
-                                changeArray.removeAll()
-                                percentChangeArray.removeAll()
+                            if let items = jsonData!["results"] as? NSArray {
                                 
                                 for item in items {
                                     
                                     let ticker = item["symbol"]!
-                                    
                                     tickerTable.append(ticker as! String)
-                                    //NSUserDefaults.standardUserDefaults().setObject(tickerTable, forKey: "tickerTable")
-                                    
                                     
                                     let price = item["price"]!
-                                
                                     priceArray.append(price as! Float)
-                                    //NSUserDefaults.standardUserDefaults().setObject(priceArray, forKey: "priceArray")
-                                    
-                                    
+                                  
                                     let priceChange = item["amt_change"]!
-                                    
                                     changeArray.append(Float(priceChange as! String)!)
-                                    //NSUserDefaults.standardUserDefaults().setObject(changeArray, forKey: "changeArray")
-
-                                    let percentChange = item["percent_change"]!
-                                 
-                                    percentChangeArray.append(percentChange as! String)
-                                    //NSUserDefaults.standardUserDefaults().setObject(percentChangeArray, forKey: "percentChangeArray")
-                                    
                                    
+                                    let percentChange = item["percent_change"]!
+                                    percentChangeArray.append(percentChange as! String)
                                     
-                                 
                                 }
                                 
-                        dispatch_async(dispatch_get_main_queue()) {
+                                if items.count < 1 {
+                                
+                                    self.timer.invalidate()
+                                    let alert = UIAlertController(title: "Error", message: "Please check ticker symbols", preferredStyle: UIAlertControllerStyle.Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                }
                             
-                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.loadingIndicator.stopAnimating()
                                 self.collectionView.reloadData()
-                                self.collectionView.reloadInputViews()
-                                   self.shouldUpdate = true
+                                self.shouldUpdate = true
                                 
                                 }
                                 
                             }
-                
-                       
-                         
+                          
                         } catch {
                             
                             print("not a dictionary")
@@ -136,7 +145,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //})
         }
         
-        
+        }
       
     }
 
@@ -226,9 +235,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
 
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+       /* override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         
-      /* if let prev = context.previouslyFocusedView as? StockCell {
+   if let prev = context.previouslyFocusedView as? StockCell {
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 prev.view.frame.size = self.defaultSize
             })
@@ -238,8 +247,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 next.view.frame.size = self.focusSize
             })
-        }*/
-    }
+        }
+    }*/
     
     
     
