@@ -15,9 +15,11 @@
 		885C74911BC9648F009E670E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885C74901BC9648F009E670E /* Assets.xcassets */; };
 		885C74991BC9727C009E670E /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C74981BC9727C009E670E /* StockCell.swift */; };
 		8860DE451BDD9A1400D44A97 /* redTri3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8860DE441BDD9A1400D44A97 /* redTri3.png */; };
+		887EB1801BE67ADF009AFFE0 /* chartBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 887EB17F1BE67ADF009AFFE0 /* chartBG.png */; };
 		88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F681BDD602900375EC4 /* greenTri2.png */; };
 		88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F6B1BDD78CB00375EC4 /* Card3.png */; };
 		88C89A6B1BE4476B00253D82 /* CardBG4.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C89A6A1BE4476B00253D82 /* CardBG4.png */; };
+		88D4B3891BE6C48500D8C796 /* DetailBG2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D4B3881BE6C48500D8C796 /* DetailBG2.png */; };
 		88EA27231BE3090D006AFC08 /* StockFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA27221BE3090D006AFC08 /* StockFeedCell.swift */; };
 		88EA27251BE30A47006AFC08 /* StockDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA27241BE30A47006AFC08 /* StockDetailController.swift */; };
 /* End PBXBuildFile section */
@@ -33,9 +35,11 @@
 		885C74921BC9648F009E670E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		885C74981BC9727C009E670E /* StockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		8860DE441BDD9A1400D44A97 /* redTri3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redTri3.png; sourceTree = "<group>"; };
+		887EB17F1BE67ADF009AFFE0 /* chartBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chartBG.png; sourceTree = "<group>"; };
 		88A48F681BDD602900375EC4 /* greenTri2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTri2.png; sourceTree = "<group>"; };
 		88A48F6B1BDD78CB00375EC4 /* Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card3.png; sourceTree = "<group>"; };
 		88C89A6A1BE4476B00253D82 /* CardBG4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardBG4.png; sourceTree = "<group>"; };
+		88D4B3881BE6C48500D8C796 /* DetailBG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailBG2.png; sourceTree = "<group>"; };
 		88EA27221BE3090D006AFC08 /* StockFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockFeedCell.swift; sourceTree = "<group>"; };
 		88EA27241BE30A47006AFC08 /* StockDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +78,9 @@
 				88EA27241BE30A47006AFC08 /* StockDetailController.swift */,
 				8812E2281BE5064D00F9F2DA /* TickersController.swift */,
 				88A48F6B1BDD78CB00375EC4 /* Card3.png */,
+				887EB17F1BE67ADF009AFFE0 /* chartBG.png */,
 				88C89A6A1BE4476B00253D82 /* CardBG4.png */,
+				88D4B3881BE6C48500D8C796 /* DetailBG2.png */,
 				8860DE441BDD9A1400D44A97 /* redTri3.png */,
 				88A48F681BDD602900375EC4 /* greenTri2.png */,
 				885C748D1BC9648F009E670E /* Main.storyboard */,
@@ -156,11 +162,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887EB1801BE67ADF009AFFE0 /* chartBG.png in Resources */,
 				885C74911BC9648F009E670E /* Assets.xcassets in Resources */,
 				8860DE451BDD9A1400D44A97 /* redTri3.png in Resources */,
 				88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */,
 				88C89A6B1BE4476B00253D82 /* CardBG4.png in Resources */,
 				88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */,
+				88D4B3891BE6C48500D8C796 /* DetailBG2.png in Resources */,
 				885C748F1BC9648F009E670E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

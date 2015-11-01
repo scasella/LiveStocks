@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class StockDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var isLineChart = true
@@ -61,6 +62,12 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func tickerTextSet(sender: UITextField) {
         
         if sender.text != "" {
+            
+        priceLabel.text = ""
+        priceChangeLabel.text = ""
+        percentChangeLabel.text = ""
+        arrowImg.image = nil
+
         
         ticker = sender.text!.uppercaseStringWithLocale(NSLocale.currentLocale())
         
@@ -77,6 +84,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         downloadData()
         
         downloadDataFeed()
+            
         }
     }
     
@@ -103,7 +111,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
         downloadDataFeed()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "update", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "update", userInfo: nil, repeats: true)
         
     }
     
@@ -138,6 +146,24 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
+    func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        if let prev = context.previouslyFocusedView as? StockFeedCell {
+            prev.nameLabel.textColor = UIColor.whiteColor()
+             prev.contentLabel.textColor = UIColor.whiteColor()
+             prev.timestampLabel.textColor = UIColor.whiteColor()
+        }
+        
+        if let next = context.nextFocusedView as? StockFeedCell {
+            next.nameLabel.textColor = UIColor.blackColor()
+            next.contentLabel.textColor = UIColor.blackColor()
+            next.timestampLabel.textColor = UIColor.blackColor()
+        }
+        
+        
+    }
+
+    
+    
     func downloadDataFeed() {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -161,14 +187,17 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     for item in items {
                         
-                        let body = item["body"]!
-                            
-                        self.feedContentArray.append(body as! String)
+                        let body = (item["body"]! as! String).stringByReplacingOccurrencesOfString("&#39;", withString: "'").stringByReplacingOccurrencesOfString("&quot;", withString: "'").stringByReplacingOccurrencesOfString("&amp;", withString: "&")
                         
-                        let timestamp = item["created_at"]!
+                        self.feedContentArray.append(body)
                         
-                        self.feedTimestampArray.append(timestamp as! String)
+                        let rawVal = (item["created_at"]! as! String).componentsSeparatedByString("T")
                         
+                        let formattedVal = rawVal[1] 
+                        
+                        let finalVal = formattedVal.stringByReplacingOccurrencesOfString("Z", withString: "")
+                        
+                        self.feedTimestampArray.append(finalVal)
                         
                         let image = item["user"]!!["avatar_url_ssl"]!
                         
@@ -194,7 +223,6 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                         self.loadingIndicator.stopAnimating()
                         self.tableView.reloadData()
                        
-                        
                     }
                     
                 }
@@ -210,7 +238,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             // })
             
             //})
-        }
+       }
             
         }
         
@@ -332,7 +360,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     func assignMappedURL() {
 
-        let mappedURLString = "https://api.import.io/store/data/7e762568-91f9-4433-976d-6061072ad558/_query?input/input=" + ticker + "&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
+        let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + ticker + "%2C%20googl&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
         
         mappedURL = NSURL(string: mappedURLString)
     }
@@ -341,7 +369,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     func downloadData() {
         
-      // dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
         
             self.shouldUpdate = false
             
@@ -351,49 +379,44 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 if let items = jsonData!["results"] as? NSArray {
                     
-                    for item in items {
+                    if items.count < 1 {
                         
-                        let price = item["price"]!
+                        self.timer.invalidate()
+                        let alert = UIAlertController(title: "Error", message: "Please check ticker symbol", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil) } else {
+                    
+                    
+                        let price = items[0]["price"]!
+                        //self.priceLabel.text = "\(price!)"
                         
-                        self.priceLabel.text = "\(price!)"
+                        let priceChange = items[0]["amt_change"]!
+                        //self.priceChangeLabel.text = "\(priceChange!)"
+                        
+                        let percentChange = items[0]["percent_change"]!
+                        //self.percentChangeLabel.text = "\(percentChange!)"
+                        
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.priceLabel.text = "\(price!)"
+                            self.priceChangeLabel.text = "\(priceChange!)"
+                            self.percentChangeLabel.text = "\(percentChange!)"
                 
-                        
-                        let priceChange = item["amount_change"]! as! String
-                        
-                        self.priceChangeLabel.text = "\(priceChange)"
-                       
-                        
-                        let percentChange = item["percent_change"]!
-                        
-                        self.percentChangeLabel.text = "\(percentChange!)"
-                        
-                        if Int(priceChange) < 0 {
-                            self.priceChangeLabel.textColor = UIColor.redColor()
-                            self.percentChangeLabel.textColor = UIColor.redColor()
+                        if Float(items[0]["amt_change"]! as! String) < 0.0 {
+                            self.priceChangeLabel.textColor = UIColor(red:0.93, green:0.29, blue:0.29, alpha:1.0)
+                            self.percentChangeLabel.textColor = UIColor(red:0.93, green:0.29, blue:0.29, alpha:1.0)
                             self.arrowImg.image = UIImage(named: "redTri3.png")
                         } else {
-                            self.priceChangeLabel.textColor = UIColor.greenColor()
-                            self.percentChangeLabel.textColor = UIColor.greenColor()
+                            self.priceChangeLabel.textColor = UIColor(red:0.07, green:0.73, blue:0.60, alpha:1.0)
+                            self.percentChangeLabel.textColor = UIColor(red:0.07, green:0.73, blue:0.60, alpha:1.0)
                             self.arrowImg.image = UIImage(named: "greenTri2.png")
                         }
-                    }
-                        if items.count < 1 {
-                            
-                            self.timer.invalidate()
-                            let alert = UIAlertController(title: "Error", message: "Please check ticker symbol", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                            self.presentViewController(alert, animated: true, completion: nil)
                         
-                
+                        }
+
+                         }
                 
                     }
-                    
-                   /* dispatch_async(dispatch_get_main_queue()) {
-                        
-                        
-                        
-                    } */
-                }
                 
             } catch {
                 
@@ -407,9 +430,14 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                 self.presentViewController(alert, animated: true, completion: nil)
 
             }
-   //     }
+         }
     }
     
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        timer.invalidate()
+    }
     
     
 }

@@ -48,6 +48,7 @@ class TickersController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tickerArray.removeAtIndex(indexPath.row)
          NSUserDefaults.standardUserDefaults().setObject(tickerArray, forKey: "tickerArray")
+        
         tableView.reloadData()
     }
     
@@ -78,6 +79,13 @@ class TickersController: UIViewController, UITableViewDelegate, UITableViewDataS
         return TickerCell()
     }
 
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        tickerTable.removeAll()
+        priceArray.removeAll()
+        changeArray.removeAll()
+        percentChangeArray.removeAll()
+    }
     
 
 }

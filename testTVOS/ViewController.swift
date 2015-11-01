@@ -10,7 +10,6 @@ import UIKit
 
 var segueTicker = ""
 
-
 var tickerArray = ["AAPL","GOOGL","KO"]
 
 var tickerTable = [String]()
@@ -36,7 +35,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     let defaultSize = CGSizeMake(421, 162)
     let focusSize = CGSizeMake(471, 212)
-    var movies = [Movie]()
     
     
     
@@ -52,11 +50,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func viewWillAppear(animated: Bool) {
         
+        tickerTable.removeAll()
+        priceArray.removeAll()
+        changeArray.removeAll()
+        percentChangeArray.removeAll()
+        
         if NSUserDefaults.standardUserDefaults().objectForKey("tickerArray") != nil {
             tickerArray = NSUserDefaults.standardUserDefaults().objectForKey("tickerArray") as! [String]
         }
         
         collectionView.reloadData()
+        collectionView.reloadInputViews()
+        stocksButton.preferredFocusedView
+        
+        if tickerArray.count != 0 {
         
         loadingIndicator.startAnimating()
         
@@ -65,9 +72,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         downloadData()
         // Do any additional setup after loading the view, typically from a nib.
         
-         timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "update", userInfo: nil, repeats: true)
-        
-      stocksButton.preferredFocusedView
+         timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "update", userInfo: nil, repeats: true)
+        }
         
     }
     
@@ -84,22 +90,48 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     shouldUpdate = false
         
-    tickerTable.removeAll()
-    priceArray.removeAll()
-    changeArray.removeAll()
-    percentChangeArray.removeAll()
-        
    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
       //  let qualityOfServiceClass = QOS_CLASS_BACKGROUND
         //let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
         //dispatch_async(backgroundQueue, {
+    
+                        tickerTable.removeAll()
+                        priceArray.removeAll()
+                        changeArray.removeAll()
+                        percentChangeArray.removeAll()
     
     
                         if let data = NSData(contentsOfURL: self.mappedURL!) {
     
                         do { let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.MutableContainers) as? NSDictionary
                             
+                            
                             if let items = jsonData!["results"] as? NSArray {
+                                
+                                if items.count < 1 {
+                                    
+                                    self.timer.invalidate()
+                                    let alert = UIAlertController(title: "Error", message: "Please check ticker symbols", preferredStyle: UIAlertControllerStyle.Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                } else {
+
+                                
+                                if tickerArray.count == 1 {
+                                    
+                                    let ticker = items[0]["symbol"]!
+                                    tickerTable.append(ticker as! String)
+                                    
+                                    let price = items[0]["price"]!
+                                    priceArray.append(price as! Float)
+                                    
+                                    let priceChange = items[0]["amt_change"]!
+                                    changeArray.append(Float(priceChange as! String)!)
+                                    
+                                    let percentChange = items[0]["percent_change"]!
+                                    percentChangeArray.append(percentChange as! String)
+
+                                } else {
                                 
                                 for item in items {
                                     
@@ -117,18 +149,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     
                                 }
                                 
-                                if items.count < 1 {
-                                
-                                    self.timer.invalidate()
-                                    let alert = UIAlertController(title: "Error", message: "Please check ticker symbols", preferredStyle: UIAlertControllerStyle.Alert)
-                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                                    self.presentViewController(alert, animated: true, completion: nil)
                                 }
-                            
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.loadingIndicator.stopAnimating()
-                                self.collectionView.reloadData()
-                                self.shouldUpdate = true
+                                    
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        self.loadingIndicator.stopAnimating()
+                                        self.collectionView.reloadData()
+                                        self.shouldUpdate = true
+                                        
+                                    }
                                 
                                 }
                                 
@@ -139,14 +167,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             print("not a dictionary")
                             
                         }
-
                // })
-    
-        //})
+            //})
         }
-        
-        }
-      
+      }
     }
 
     
@@ -166,6 +190,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.price.text = "\(priceArray[indexPath.row])"
             cell.priceChange.text = "\(changeArray [indexPath.row])"
             cell.percentageChange.text = percentChangeArray[indexPath.row]
+            
             
             if changeArray[indexPath.row] < 0.0 {
                 
@@ -196,6 +221,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 tap.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)]
                 cell.addGestureRecognizer(tap)
             }
+            
             
             return cell
             
@@ -254,6 +280,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func assignMappedURL() {
         
+        if tickerArray.count == 1 {
+            
+        let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + tickerArray[0] + "%2C%20googl&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
+            
+         mappedURL = NSURL(string: mappedURLString)
+            
+        } else {
+        
         let percentScreen = "%2C%20"
         
         var urlText = ""
@@ -280,6 +314,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + encodedURL + "&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
         
         mappedURL = NSURL(string: mappedURLString)
+            
+        }
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        timer.invalidate()
     }
     
 }
