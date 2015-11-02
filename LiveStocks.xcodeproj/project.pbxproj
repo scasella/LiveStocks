@@ -16,6 +16,7 @@
 		885C74991BC9727C009E670E /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885C74981BC9727C009E670E /* StockCell.swift */; };
 		8860DE451BDD9A1400D44A97 /* redTri3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8860DE441BDD9A1400D44A97 /* redTri3.png */; };
 		887EB1801BE67ADF009AFFE0 /* chartBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 887EB17F1BE67ADF009AFFE0 /* chartBG.png */; };
+		8887F40E1BE6D1BC00626EE8 /* DetailBG3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8887F40D1BE6D1BC00626EE8 /* DetailBG3.png */; };
 		88A48F6A1BDD602900375EC4 /* greenTri2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F681BDD602900375EC4 /* greenTri2.png */; };
 		88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A48F6B1BDD78CB00375EC4 /* Card3.png */; };
 		88C89A6B1BE4476B00253D82 /* CardBG4.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C89A6A1BE4476B00253D82 /* CardBG4.png */; };
@@ -36,6 +37,7 @@
 		885C74981BC9727C009E670E /* StockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		8860DE441BDD9A1400D44A97 /* redTri3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redTri3.png; sourceTree = "<group>"; };
 		887EB17F1BE67ADF009AFFE0 /* chartBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chartBG.png; sourceTree = "<group>"; };
+		8887F40D1BE6D1BC00626EE8 /* DetailBG3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailBG3.png; sourceTree = "<group>"; };
 		88A48F681BDD602900375EC4 /* greenTri2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTri2.png; sourceTree = "<group>"; };
 		88A48F6B1BDD78CB00375EC4 /* Card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card3.png; sourceTree = "<group>"; };
 		88C89A6A1BE4476B00253D82 /* CardBG4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardBG4.png; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				8812E2281BE5064D00F9F2DA /* TickersController.swift */,
 				88A48F6B1BDD78CB00375EC4 /* Card3.png */,
 				887EB17F1BE67ADF009AFFE0 /* chartBG.png */,
+				8887F40D1BE6D1BC00626EE8 /* DetailBG3.png */,
 				88C89A6A1BE4476B00253D82 /* CardBG4.png */,
 				88D4B3881BE6C48500D8C796 /* DetailBG2.png */,
 				8860DE441BDD9A1400D44A97 /* redTri3.png */,
@@ -170,6 +173,7 @@
 				88A48F6C1BDD78CB00375EC4 /* Card3.png in Resources */,
 				88D4B3891BE6C48500D8C796 /* DetailBG2.png in Resources */,
 				885C748F1BC9648F009E670E /* Main.storyboard in Resources */,
+				8887F40E1BE6D1BC00626EE8 /* DetailBG3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

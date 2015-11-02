@@ -15,7 +15,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     var feedNameArray = [String]()
     var feedImageURLArray = [UIImage]()
-    var feedTimestampArray = [String]()
+   // var feedTimestampArray = [String]()
     var feedContentArray = [String]()
     
     var timer = NSTimer()
@@ -24,7 +24,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     var mappedURL = NSURL(string: "")
     
-    var shouldUpdate = true
+    //var shouldUpdate = true
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chartImg: UIImageView!
@@ -108,11 +108,16 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         assignMappedURL()
         
         downloadData()
+      
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            
+        self.downloadDataFeed()
         
-        downloadDataFeed()
+        }
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "update", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "downloadData", userInfo: nil, repeats: true)
         
+        let timer2 = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "downloadDataFeed", userInfo: nil, repeats: true)
     }
     
     
@@ -124,7 +129,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feedNameArray.count
+        return feedImageURLArray.count
     }
     
     
@@ -134,7 +139,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.avatarImage.image = feedImageURLArray[indexPath.row]
         cell.nameLabel.text = feedNameArray[indexPath.row]
-        cell.timestampLabel.text = feedTimestampArray[indexPath.row]
+        //cell.timestampLabel.text = feedTimestampArray[indexPath.row]
         cell.contentLabel.text = feedContentArray[indexPath.row]
         
             return cell
@@ -150,13 +155,13 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         if let prev = context.previouslyFocusedView as? StockFeedCell {
             prev.nameLabel.textColor = UIColor.whiteColor()
              prev.contentLabel.textColor = UIColor.whiteColor()
-             prev.timestampLabel.textColor = UIColor.whiteColor()
+             //prev.timestampLabel.textColor = UIColor.whiteColor()
         }
         
         if let next = context.nextFocusedView as? StockFeedCell {
             next.nameLabel.textColor = UIColor.blackColor()
             next.contentLabel.textColor = UIColor.blackColor()
-            next.timestampLabel.textColor = UIColor.blackColor()
+            //next.timestampLabel.textColor = UIColor.blackColor()
         }
         
         
@@ -166,7 +171,13 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     func downloadDataFeed() {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        
+        self.feedNameArray.removeAll()
+        self.feedContentArray.removeAll()
+        // self.feedTimestampArray.removeAll()
+        self.feedImageURLArray.removeAll()
+        
+      //  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             //  let qualityOfServiceClass = QOS_CLASS_BACKGROUND
             //let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
             //dispatch_async(backgroundQueue, {
@@ -180,37 +191,32 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                
                 if let items = jsonData!["messages"] as? NSArray {
                     
-                    self.feedNameArray.removeAll()
-                    self.feedContentArray.removeAll()
-                    self.feedTimestampArray.removeAll()
-                    self.feedImageURLArray.removeAll()
-                    
                     for item in items {
                         
                         let body = (item["body"]! as! String).stringByReplacingOccurrencesOfString("&#39;", withString: "'").stringByReplacingOccurrencesOfString("&quot;", withString: "'").stringByReplacingOccurrencesOfString("&amp;", withString: "&")
                         
                         self.feedContentArray.append(body)
                         
-                        let rawVal = (item["created_at"]! as! String).componentsSeparatedByString("T")
+                        //let rawVal = (item["created_at"]! as! String).componentsSeparatedByString("T")
                         
-                        let formattedVal = rawVal[1] 
+                        //let formattedVal = rawVal[1]
                         
-                        let finalVal = formattedVal.stringByReplacingOccurrencesOfString("Z", withString: "")
+                       // let finalVal = formattedVal.stringByReplacingOccurrencesOfString("Z", withString: "")
                         
-                        self.feedTimestampArray.append(finalVal)
+                       // self.feedTimestampArray.append(finalVal)
                         
                         let image = item["user"]!!["avatar_url_ssl"]!
                         
                         let smallData = NSData(contentsOfURL: NSURL(string: "\(image!)")!)
                   
-                        if smallData != nil {
+                       // if smallData != nil {
                         
                             self.feedImageURLArray.append(UIImage(data: smallData!)!)
                             
-                        } else {
+                       // } else {
                            
-                            self.feedImageURLArray.append(UIImage(named: "")!)
-                        }
+                           // self.feedImageURLArray.append(UIImage(named: "")!)
+                        //}
                             
                         let username = item["user"]!!["username"]!
                         
@@ -218,12 +224,11 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                         
                     }
                     
-                    dispatch_async(dispatch_get_main_queue()) {
+                  dispatch_async(dispatch_get_main_queue()) {
                         
                         self.loadingIndicator.stopAnimating()
                         self.tableView.reloadData()
-                       
-                    }
+                  }
                     
                 }
                 
@@ -240,7 +245,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             //})
        }
             
-        }
+      //  }
         
         
     }
@@ -350,11 +355,11 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
-    func update() {
+  /* func update() {
         if shouldUpdate == true {
             downloadData()
         }
-    }
+   } */
     
     
     
@@ -371,7 +376,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
         
-            self.shouldUpdate = false
+            //self.shouldUpdate = false
             
              if let data = NSData(contentsOfURL: self.mappedURL!) {
             
@@ -398,7 +403,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                         
                         
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.priceLabel.text = "\(price!)"
+                            self.priceLabel.text = "$\(price!)"
                             self.priceChangeLabel.text = "\(priceChange!)"
                             self.percentChangeLabel.text = "\(percentChange!)"
                 
@@ -410,8 +415,9 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                             self.priceChangeLabel.textColor = UIColor(red:0.07, green:0.73, blue:0.60, alpha:1.0)
                             self.percentChangeLabel.textColor = UIColor(red:0.07, green:0.73, blue:0.60, alpha:1.0)
                             self.arrowImg.image = UIImage(named: "greenTri2.png")
+                           // self.shouldUpdate = true
                         }
-                        
+                         // print("others")
                         }
 
                          }

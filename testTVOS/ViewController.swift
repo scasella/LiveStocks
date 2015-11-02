@@ -25,13 +25,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var mappedURL = NSURL(string: "")
     
-    var shouldUpdate = true
+    //var shouldUpdate = true
     
     var timer = NSTimer()
     
     @IBOutlet weak var stocksButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var emptyLabel: UILabel!
     
     let defaultSize = CGSizeMake(421, 162)
     let focusSize = CGSizeMake(471, 212)
@@ -64,7 +65,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         stocksButton.preferredFocusedView
         
         if tickerArray.count != 0 {
-        
+            
+        emptyLabel.hidden = true
         loadingIndicator.startAnimating()
         
         assignMappedURL()
@@ -72,23 +74,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         downloadData()
         // Do any additional setup after loading the view, typically from a nib.
         
-         timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "update", userInfo: nil, repeats: true)
+         timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "downloadData", userInfo: nil, repeats: true)
+        } else {
+            emptyLabel.hidden = false
         }
         
     }
     
     
-    func update() {
+   /* func update() {
         if shouldUpdate == true {
             downloadData()
         }
-    }
+    }*/
     
     
     
     func downloadData() {
         
-    shouldUpdate = false
+  //  shouldUpdate = false
         
    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
       //  let qualityOfServiceClass = QOS_CLASS_BACKGROUND
@@ -99,8 +103,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         priceArray.removeAll()
                         changeArray.removeAll()
                         percentChangeArray.removeAll()
-    
-    
+  
                         if let data = NSData(contentsOfURL: self.mappedURL!) {
     
                         do { let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.MutableContainers) as? NSDictionary
@@ -112,7 +115,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     
                                     self.timer.invalidate()
                                     let alert = UIAlertController(title: "Error", message: "Please check ticker symbols", preferredStyle: UIAlertControllerStyle.Alert)
-                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                                     self.presentViewController(alert, animated: true, completion: nil)
                                 } else {
 
@@ -131,7 +134,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     let percentChange = items[0]["percent_change"]!
                                     percentChangeArray.append(percentChange as! String)
 
-                                } else {
+                                    } else {
                                 
                                 for item in items {
                                     
@@ -150,15 +153,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                 }
                                 
                                 }
-                                    
+                                }
                                     dispatch_async(dispatch_get_main_queue()) {
                                         self.loadingIndicator.stopAnimating()
                                         self.collectionView.reloadData()
-                                        self.shouldUpdate = true
+                                        //self.shouldUpdate = true
+                                        
                                         
                                     }
                                 
-                                }
+                                
                                 
                             }
                           

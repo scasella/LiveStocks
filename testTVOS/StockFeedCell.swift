@@ -12,7 +12,7 @@ class StockFeedCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var timestampLabel: UILabel!
+    //@IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var avatarImage: UIImageView!
 
 }
