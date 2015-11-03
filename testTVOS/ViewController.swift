@@ -10,7 +10,7 @@ import UIKit
 
 var segueTicker = ""
 
-var tickerArray = ["AAPL","GOOGL","KO"]
+var tickerArray = ["AAPL"]
 
 var tickerTable = [String]()
 
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         downloadData()
         // Do any additional setup after loading the view, typically from a nib.
         
-         timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "downloadData", userInfo: nil, repeats: true)
+         timer = NSTimer.scheduledTimerWithTimeInterval(6.0, target: self, selector: "downloadData", userInfo: nil, repeats: true)
         } else {
             emptyLabel.hidden = false
         }
@@ -99,10 +99,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
         //dispatch_async(backgroundQueue, {
     
-                        tickerTable.removeAll()
-                        priceArray.removeAll()
-                        changeArray.removeAll()
-                        percentChangeArray.removeAll()
+    
   
                         if let data = NSData(contentsOfURL: self.mappedURL!) {
     
@@ -118,7 +115,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                                     self.presentViewController(alert, animated: true, completion: nil)
                                 } else {
-
+                                
+                                   tickerTable.removeAll()
+                                    priceArray.removeAll()
+                                    changeArray.removeAll()
+                                    percentChangeArray.removeAll()
                                 
                                 if tickerArray.count == 1 {
                                     
@@ -324,6 +325,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         timer.invalidate()
     }
     

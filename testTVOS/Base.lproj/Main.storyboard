@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LiveStocks_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Live_Stocks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -50,7 +50,7 @@
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Real-Time Quotes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBB-ur-5N0">
-                                <rect key="frame" x="1763" y="1051" width="137" height="21"/>
+                                <rect key="frame" x="1763" y="1046" width="137" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,7 +72,7 @@
                                     <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </activityIndicatorView>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCell" id="GcI-bi-o6e" customClass="StockCell" customModule="LiveStocks_temp_caseinsensitive_rename" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCell" id="GcI-bi-o6e" customClass="StockCell" customModule="Live_Stocks" customModuleProvider="target">
                                         <rect key="frame" x="85" y="0.0" width="480" height="252"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -159,7 +159,7 @@
         <!--Tickers Controller-->
         <scene sceneID="hOQ-jo-SKF">
             <objects>
-                <viewController id="gNd-8U-aai" customClass="TickersController" customModule="LiveStocks_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gNd-8U-aai" customClass="TickersController" customModule="Live_Stocks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JgG-Aw-UdQ"/>
                         <viewControllerLayoutGuide type="bottom" id="Y4g-k2-Urh"/>
@@ -174,7 +174,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="84" id="6KS-7C-BRb" customClass="TickerCell" customModule="LiveStocks_temp_caseinsensitive_rename" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="84" id="6KS-7C-BRb" customClass="TickerCell" customModule="Live_Stocks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="54" width="487" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6KS-7C-BRb" id="Ss5-8P-rOd">
@@ -245,7 +245,7 @@
         <!--Stock Detail Controller-->
         <scene sceneID="X5G-96-bhN">
             <objects>
-                <viewController id="5WX-DA-NiY" customClass="StockDetailController" customModule="LiveStocks_temp_caseinsensitive_rename" sceneMemberID="viewController">
+                <viewController id="5WX-DA-NiY" customClass="StockDetailController" customModule="Live_Stocks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6e0-Gc-yqm"/>
                         <viewControllerLayoutGuide type="bottom" id="1Vs-MP-RCD"/>
@@ -268,7 +268,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="166" id="MKt-ZE-jG7" customClass="StockFeedCell" customModule="LiveStocks_temp_caseinsensitive_rename" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="166" id="MKt-ZE-jG7" customClass="StockFeedCell" customModule="Live_Stocks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="54" width="656" height="166"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MKt-ZE-jG7" id="2EL-PV-SF8">
@@ -373,7 +373,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiu-CS-qco">
-                                <rect key="frame" x="1103" y="78" width="191" height="70"/>
+                                <rect key="frame" x="1103" y="78" width="274" height="70"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="42"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -435,7 +435,7 @@
                         <gestureRecognizers/>
                     </view>
                     <connections>
-                        <outlet property="arrowImg" destination="KFI-p7-Fwa" id="kER-Pv-J3V"/>
+                        <outlet property="arrowImg" destination="KFI-p7-Fwa" id="oBQ-oA-sqt"/>
                         <outlet property="chartImg" destination="tcu-QC-jGj" id="f8T-N1-9iM"/>
                         <outlet property="loadingIndicator" destination="ZLk-rk-fN2" id="wIO-BB-Ksb"/>
                         <outlet property="percentChangeLabel" destination="bRN-fs-zyy" id="VG8-gN-Er1"/>

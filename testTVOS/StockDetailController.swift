@@ -20,8 +20,6 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     var timer = NSTimer()
     
-    var ticker = segueTicker
-    
     var mappedURL = NSURL(string: "")
     
     //var shouldUpdate = true
@@ -33,6 +31,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var priceChangeLabel: UILabel!
     @IBOutlet weak var percentChangeLabel: UILabel!
     @IBOutlet weak var arrowImg: UIImageView!
+
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     
@@ -69,9 +68,9 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         arrowImg.image = nil
 
         
-        ticker = sender.text!.uppercaseStringWithLocale(NSLocale.currentLocale())
+        segueTicker = sender.text!.uppercaseStringWithLocale(NSLocale.currentLocale())
         
-        tickerLabel.text = "\(ticker)"
+        tickerLabel.text = "\(segueTicker)"
         
         sender.text = ""
             
@@ -101,7 +100,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
         loadingIndicator.startAnimating()
         
-        tickerLabel.text = "\(ticker)"
+        tickerLabel.text = "\(segueTicker)"
         
         displayChart(0, isLineType: isLineChart)
         
@@ -182,7 +181,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             //let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
             //dispatch_async(backgroundQueue, {
             
-            let mappedURL = NSURL(string: "https://api.stocktwits.com/api/2/streams/symbol/\(self.ticker).json")
+            let mappedURL = NSURL(string: "https://api.stocktwits.com/api/2/streams/symbol/\(segueTicker).json")
             
             if let data = NSData(contentsOfURL: mappedURL!) {
         
@@ -262,7 +261,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "l"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -273,7 +272,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "l"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -284,7 +283,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "l"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -295,7 +294,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "l"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -311,7 +310,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "c"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -322,7 +321,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "c"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -333,7 +332,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "c"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -344,7 +343,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             let type = "c"
             
-            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(ticker)&t=\(time)&q=\(type)&l=on&z=l")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
             
@@ -365,7 +364,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     func assignMappedURL() {
 
-        let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + ticker + "%2C%20googl&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
+        let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + segueTicker + "%2C%20afb&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
         
         mappedURL = NSURL(string: mappedURLString)
     }
