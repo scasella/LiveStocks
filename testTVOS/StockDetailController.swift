@@ -19,6 +19,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     var feedContentArray = [String]()
     
     var timer = NSTimer()
+    var timer2 = NSTimer()
     
     var mappedURL = NSURL(string: "")
     
@@ -62,6 +63,9 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
         if sender.text != "" {
             
+        timer.invalidate()
+        timer2.invalidate()
+            
         priceLabel.text = ""
         priceChangeLabel.text = ""
         percentChangeLabel.text = ""
@@ -74,16 +78,22 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
         sender.text = ""
             
-        timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "update", userInfo: nil, repeats: true)
-
-        displayChart(0, isLineType: false)
-        
-        assignMappedURL()
-        
-        downloadData()
-        
-        downloadDataFeed()
+            displayChart(0, isLineType: isLineChart)
             
+            assignMappedURL()
+            
+            downloadData()
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                
+                self.downloadDataFeed()
+                
+            }
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "downloadData", userInfo: nil, repeats: true)
+            
+            timer2 = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "downloadDataFeed", userInfo: nil, repeats: true)
+    
         }
     }
     
@@ -116,7 +126,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
         timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "downloadData", userInfo: nil, repeats: true)
         
-        let timer2 = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "downloadDataFeed", userInfo: nil, repeats: true)
+        timer2 = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "downloadDataFeed", userInfo: nil, repeats: true)
     }
     
     
@@ -386,6 +396,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     if items.count < 1 {
                         
                         self.timer.invalidate()
+                        self.timer2.invalidate()
                         let alert = UIAlertController(title: "Error", message: "Please check ticker symbol", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil) } else {
@@ -402,7 +413,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                         
                         
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.priceLabel.text = "$\(price!)"
+                            self.priceLabel.text = "$\(round(price as! Double * 100) / 100)"
                             self.priceChangeLabel.text = "\(priceChange!)"
                             self.percentChangeLabel.text = "\(percentChange!)"
                 
@@ -430,6 +441,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
         
              } else {
                 self.timer.invalidate()
+                self.timer2.invalidate()
                 let alert = UIAlertController(title: "Error", message: "Please check ticker symbol", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
