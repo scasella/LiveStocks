@@ -260,6 +260,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
+    var chartTuple: (Int, Bool) = (1, true)
+    
     
     func displayChart(time: Int, isLineType: Bool) {
         
@@ -275,6 +277,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             self.chartImg.image = UIImage(data: data!)
             
+            chartTuple = (0, true)
+            
             
         } else if time == 1 {
             
@@ -285,6 +289,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
+            
+             chartTuple = (1, true)
             
             
         } else if time == 2 {
@@ -297,6 +303,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             self.chartImg.image = UIImage(data: data!)
             
+             chartTuple = (1, true)
+            
             
         } else {
             
@@ -307,6 +315,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
+            
+             chartTuple = (1, true)
             
             
         }
@@ -324,6 +334,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             self.chartImg.image = UIImage(data: data!)
             
+            chartTuple = (0, false)
+            
             
         } else if time == 1 {
             
@@ -334,6 +346,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
+            
+             chartTuple = (1, true)
             
             
         } else if time == 2 {
@@ -346,6 +360,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             
             self.chartImg.image = UIImage(data: data!)
             
+             chartTuple = (1, true)
             
         } else {
             
@@ -356,6 +371,8 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
             let data = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=\(time)&q=\(type)&l=on&z=l")!)
             
             self.chartImg.image = UIImage(data: data!)
+            
+            chartTuple = (1, true)
             
             
     }
@@ -428,6 +445,18 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                            // self.shouldUpdate = true
                         }
                          // print("others")
+                            let dataChart: NSData?
+                            
+                            if self.chartTuple.0 == 0 {
+                                if self.isLineChart == true {
+                           
+                                 dataChart = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=1d&q=l&l=on&z=l")!)
+                                } else {
+                                     dataChart = NSData(contentsOfURL: NSURL(string: "http://chart.finance.yahoo.com/z?s=\(segueTicker)&t=1d&q=c&l=on&z=l")!)
+                                }
+                            
+                            self.chartImg.image = UIImage(data: dataChart!)
+                            }
                         }
 
                          }
