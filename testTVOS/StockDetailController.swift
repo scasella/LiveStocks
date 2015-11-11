@@ -391,7 +391,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     func assignMappedURL() {
 
-        let mappedURLString = "https://api.import.io/store/data/383a210c-0f39-477c-9c73-40717af1ba8b/_query?input/input=" + segueTicker + "%2C%20afb&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
+        let mappedURLString = "https://api.import.io/store/data/2df912a7-82b9-41a9-b1a6-97b0a078e4fb/_query?input/input=" + segueTicker + "%2C%20afb&_user=269d78c6-495d-43df-899d-47320fc07fe4&_apikey=269d78c6495d43df899d47320fc07fe4886fa6efe4d7561df8557e1696cb76a1fef8f22d1807eda04e3cf5335799c8a1920d4d62f0801e9f5ecdb4b5901f7f4f5fa653f59f1b71fe22582aea9acc9f69"
         
         mappedURL = NSURL(string: mappedURLString)
     }
@@ -446,7 +446,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                         }
                          // print("others")
                             let dataChart: NSData?
-                            
+                   
                             if self.chartTuple.0 == 0 {
                                 if self.isLineChart == true {
                            
