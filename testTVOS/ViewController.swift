@@ -111,7 +111,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                 if items.count < 1 {
                                     
                                     self.timer.invalidate()
-                                    let alert = UIAlertController(title: "Error", message: "Please check ticker symbols", preferredStyle: UIAlertControllerStyle.Alert)
+                                    let alert = UIAlertController(title: "Error", message: "Please check ticker symbol or internet connection", preferredStyle: UIAlertControllerStyle.Alert)
                                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                                     self.presentViewController(alert, animated: true, completion: nil)
                                 } else {

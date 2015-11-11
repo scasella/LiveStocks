@@ -414,7 +414,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
                         
                         self.timer.invalidate()
                         self.timer2.invalidate()
-                        let alert = UIAlertController(title: "Error", message: "Please check ticker symbol", preferredStyle: UIAlertControllerStyle.Alert)
+                        let alert = UIAlertController(title: "Error", message: "Please check ticker symbol or internet connection", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil) } else {
                     
@@ -471,7 +471,7 @@ class StockDetailController: UIViewController, UITableViewDelegate, UITableViewD
              } else {
                 self.timer.invalidate()
                 self.timer2.invalidate()
-                let alert = UIAlertController(title: "Error", message: "Please check ticker symbol", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: "Please check ticker symbol or internet connection", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
 
